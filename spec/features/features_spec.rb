@@ -20,4 +20,13 @@ feature 'As player 1 I want to attack Player 2 and get confirmation' do
   end
 end
 
+feature 'As player 1 when I attack I want to decrease Player 2 HP by 10' do
+  scenario 'Attack button reduces hp by 10' do 
+    sign_in_and_play
+    click_button('Attack!')
+    expect(page).not_to have_content('Kir Hit Points: 100')
+    expect(page).to have_content('Kir Hit Points: 90')
+  end
+end
+
 
