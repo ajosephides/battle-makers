@@ -18,6 +18,7 @@ class Battle < Sinatra::Base
   end
 
   get '/play' do
+    @player_turn = $game.turn
     @player_1 = $game.player1.name
     @player_2 = $game.player2.name
     @player_1_hit_points = $game.player1.hit_points
@@ -29,6 +30,7 @@ class Battle < Sinatra::Base
   get '/attack' do
     session[:player1_attack] = params[:player1_attack]
     $game.attack($game.player2)
+    $game.next_turn($game.player2)
     redirect '/play'
   end
 

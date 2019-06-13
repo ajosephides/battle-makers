@@ -29,4 +29,19 @@ feature 'As player 1 when I attack I want to decrease Player 2 HP by 10' do
   end
 end
 
+feature 'players can switch turns' do
+  scenario 'game starts and it is player 1s turn' do
+    sign_in_and_play
+    expect(page).not_to have_content("Kir's turn")
+    expect(page).to have_content("AJ's turn")
+  end
+
+  scenario 'player 1 attacks and now it is player 2 turn' do
+    sign_in_and_play
+    click_button('Attack')
+    expect(page).not_to have_content("AJ's turn")
+    expect(page).to have_content("Kir's turn")
+  end
+end
+
 
